@@ -6,6 +6,12 @@ jobs:
     steps:
       - name: Get repository code
         uses: actions/checkout@v4
+      - name: Install pipx
+        run: apt install pipx
+      - name: Ensure pipx
+        run: pipx ensurepath
+      - name: Install poetry
+        run: pipx install poetry
       - name: Install dependencies
         run: poetry install
       - name: Test app
