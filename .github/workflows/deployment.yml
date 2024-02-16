@@ -1,78 +1,34 @@
 name: Deploy App
-on: push
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install python 3.11
-        run: sudo apt install python3.11
-
       - name: Get repository code
         uses: actions/checkout@v4
-
+      - name: Install python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
       - name: Install pipx
-        run: sudo apt install pipx
-
-      - name: Ensure pipx
-        run: pipx ensurepath
-
+        run: |
+          sudo apt install pipx
+          pipx ensurepath
       - name: Install poetry
         run: pipx install poetry
-
       - name: Install dependencies
         run: poetry install --no-root
-
       - name: Test app
         run: poetry run pytest -v
-
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Install python 3.11
-        run: sudo apt install python3.11
-
-      - name: Get repository code
-        uses: actions/checkout@v4
-
-      - name: Install pipx
-        run: sudo apt install pipx
-
-      - name: Ensure pipx
-        run: pipx ensurepath
-
-      - name: Install poetry
-        run: pipx install poetry
-
-      - name: Install dependencies
-        run: poetry install --no-root
-
       - name: Test linter
-        run: poetry run flake8
+        run: poetry run flake8 src
+      - name: Test mypy
+        run: poetry run mypy src
 
-#    build:
-#      runs-on: ubuntu-latest
-#
-#      steps:
-#        - name: Install python 3.11
-#          run: sudo apt install python3.11
-#
-#        - name: Get repository code
-#          uses: actions/checkout@v4
-#
-#        - name: Install pipx
-#          run: sudo apt install pipx
-#
-#        - name: Ensure pipx
-#          run: pipx ensurepath
-#
-#        - name: Install poetry
-#          run: pipx install poetry
-#
-#        - name: Install dependencies
-#          run: poetry install --no-root
-#
-#        - name: Test app
-#          run: poetry run flake8
+
