@@ -1,5 +1,5 @@
-def summa(number_one: int, number_two: int):
-    return number_one + number_two
+def summa(number_one: int, b: int):
+    return number_one + b
 
 
 print(summa(5, 6))

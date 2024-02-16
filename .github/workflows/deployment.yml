@@ -49,5 +49,30 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-root
 
-      - name: Test app
+      - name: Test linter
         run: poetry run flake8
+
+#    build:
+#      runs-on: ubuntu-latest
+#
+#      steps:
+#        - name: Install python 3.11
+#          run: sudo apt install python3.11
+#
+#        - name: Get repository code
+#          uses: actions/checkout@v4
+#
+#        - name: Install pipx
+#          run: sudo apt install pipx
+#
+#        - name: Ensure pipx
+#          run: pipx ensurepath
+#
+#        - name: Install poetry
+#          run: pipx install poetry
+#
+#        - name: Install dependencies
+#          run: poetry install --no-root
+#
+#        - name: Test app
+#          run: poetry run flake8
