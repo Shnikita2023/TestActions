@@ -7,7 +7,7 @@ jobs:
       - name: Get repository code
         uses: actions/checkout@v4
       - name: Install pipx
-        run: apt install pipx
+        run: sudo apt install pipx
       - name: Ensure pipx
         run: pipx ensurepath
       - name: Install poetry
