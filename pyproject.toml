@@ -10,8 +10,20 @@ python = "^3.11"
 pytest = "^8.0.0"
 mypy = "^1.8.0"
 flake8 = "^7.0.0"
+flake8-bugbear = "^24.2.6"
+flake8-builtins = "^2.2.0"
+flake8-variables-names = "^0.0.6"
+flake8-import-order = "^0.18.2"
+flake8-pyproject = "^1.2.3"
+pep8-naming = "^0.13.3"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.flake8]
+exclude = []
+max-line-length = 120
+max-complexity = 8
